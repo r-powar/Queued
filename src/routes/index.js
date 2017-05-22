@@ -1,55 +1,23 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var route_1 = require("./route");
-var IndexRoute = (function (_super) {
-    __extends(IndexRoute, _super);
-    /**
-     * Constructor
-     *
-     * @class IndexRoute
-     * @constructor
-     */
-    function IndexRoute() {
-        _super.call(this);
-    }
-    /**
-     * Create the routes.
-     *
-     * @class IndexRoute
-     * @method create
-     * @static
-     */
-    IndexRoute.create = function (router) {
-        //log
+Object.defineProperty(exports, "__esModule", { value: true });
+const route_1 = require("./route");
+class IndexRoute extends route_1.BaseRoute {
+    static create(router) {
         console.log("[IndexRoute::create] Creating index route.");
-        //add home page route
-        router.get("/", function (req, res, next) {
+        router.get("/", (req, res, next) => {
             new IndexRoute().index(req, res, next);
         });
-    };
-    /**
-     * The home page route.
-     *
-     * @class IndexRoute
-     * @method index
-     * @param req {Request} The express Request object.
-     * @param res {Response} The express Response object.
-     * @next {NextFunction} Execute the next method.
-     */
-    IndexRoute.prototype.index = function (req, res, next) {
-        //set custom title
+    }
+    constructor() {
+        super();
+    }
+    index(req, res, next) {
         this.title = "Home | Tour of Heros";
-        //set options
-        var options = {
+        let options = {
             "message": "Welcome to the Tour of Heros"
         };
-        //render template
         this.render(req, res, "index", options);
-    };
-    return IndexRoute;
-}(route_1.BaseRoute));
+    }
+}
 exports.IndexRoute = IndexRoute;
+//# sourceMappingURL=index.js.map

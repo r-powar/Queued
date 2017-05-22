@@ -6,7 +6,7 @@ import * as path from "path";
 import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
-import RestaurantListModel from './models/RestaurantListModel';
+import RestaurantListModel from './src/models/RestaurantListModel';
 
 
 
@@ -15,22 +15,10 @@ import RestaurantListModel from './models/RestaurantListModel';
  *
  * @class Server
  */
-export class Server {
+class App {
 
     public app: express.Application;
     public RestaurantList: RestaurantListModel;
-
-    /**
-     * Bootstrap the application.
-     *
-     * @class Server
-     * @method bootstrap
-     * @static
-     * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
-     */
-    public static bootstrap(): Server {
-        return new Server();
-    }
 
     /**
      * Constructor.
@@ -42,11 +30,11 @@ export class Server {
         //create expressjs application
         this.app = express();
 
-        //configure application
-        this.config();
-
         //add routes
         this.routes();
+
+        //configure application
+        this.config();
 
         this.RestaurantList = new RestaurantListModel();
 
@@ -73,13 +61,7 @@ export class Server {
      */
     private config() : void {
         //add static paths
-        this.app.use(express.static(path.join(__dirname, "public")));
-
-        //configure pug
-/*
-        this.app.set("views", path.join(__dirname, "views"));
-        this.app.set("view engine", "pug");
-*/
+        // this.app.use('/', express.static(__dirname+'/dist/public'));
 
         //use logger middlware
         this.app.use(logger("dev"));
@@ -120,11 +102,11 @@ export class Server {
         router = express.Router();
 
         //IndexRoute
-
+        /*
         router.post('/queued/restaurantList', (req, res) =>{
-            var jsonObj = req.body;
+            let jsonObj = req.body;
             console.log(jsonObj);
-        });
+        });*/
 
         router.get('/queued/restaurantList',(req, res) => {
             console.log('List of the restaurants');
@@ -134,5 +116,9 @@ export class Server {
 
         //use router middleware
         this.app.use('/',router);
+        this.app.use('/', express.static(__dirname + '/dist'));
+        //this.app.use('/dist', express.static(path.join(__dirname, 'dist')));
     }
 }
+
+export default new App().app;

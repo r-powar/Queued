@@ -4,7 +4,7 @@
 function makeRequest(val){
     if(val === 'restaurantList'){
         request('/queued/restaurantList/', val);
-        postData('/queued/restaurantList/');
+        //postData('/queued/restaurantList/');
         document.getElementById("searchRestaurants").style.display = "none";
         document.getElementById("showRestaurantsList").style.display = "block";
         document.getElementById("reservationPage").style.display = "none";
@@ -37,7 +37,7 @@ function request(url, val){
     xhr.send();
 }
 
-function postData(url){
+/*function postData(url){
     var xhr = new XMLHttpRequest();
     var form = document.getElementById("search");
     console.log(form);
@@ -53,7 +53,7 @@ function postData(url){
     xhr.open("POST", url , true);
     xhr.send(data);
     return false;
-}
+}*/
 
 function viewRestaurantList(element, response){
     var elementList = document.getElementById(element);
