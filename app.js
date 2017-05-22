@@ -1,53 +1,42 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var express = require("express");
 var logger = require("morgan");
-var path = require("path");
 var errorHandler = require("errorhandler");
 var methodOverride = require("method-override");
-var RestaurantListModel_1 = require('./models/RestaurantListModel');
+var RestaurantListModel_1 = require("./src/models/RestaurantListModel");
 /**
  * The server.
  *
  * @class Server
  */
-var Server = (function () {
+var App = (function () {
     /**
      * Constructor.
      *
      * @class Server
      * @constructor
      */
-    function Server() {
+    function App() {
         //create expressjs application
         this.app = express();
-        //configure application
-        this.config();
         //add routes
         this.routes();
+        //configure application
+        this.config();
         this.RestaurantList = new RestaurantListModel_1.default();
         //add api
         this.api();
     }
-    /**
-     * Bootstrap the application.
-     *
-     * @class Server
-     * @method bootstrap
-     * @static
-     * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
-     */
-    Server.bootstrap = function () {
-        return new Server();
-    };
     /**
      * Create REST API routes
      *
      * @class Server
      * @method api
      */
-    Server.prototype.api = function () {
+    App.prototype.api = function () {
         //empty for now
     };
     /**
@@ -56,14 +45,9 @@ var Server = (function () {
      * @class Server
      * @method config
      */
-    Server.prototype.config = function () {
+    App.prototype.config = function () {
         //add static paths
-        this.app.use(express.static(path.join(__dirname, "public")));
-        //configure pug
-        /*
-                this.app.set("views", path.join(__dirname, "views"));
-                this.app.set("view engine", "pug");
-        */
+        // this.app.use('/', express.static(__dirname+'/dist/public'));
         //use logger middlware
         this.app.use(logger("dev"));
         //use json form parser middlware
@@ -90,22 +74,25 @@ var Server = (function () {
      * @class Server
      * @method api
      */
-    Server.prototype.routes = function () {
+    App.prototype.routes = function () {
         var _this = this;
         var router;
         router = express.Router();
         //IndexRoute
-        router.post('/queued/restaurantList', function (req, res) {
-            var jsonObj = req.body;
+        /*
+        router.post('/queued/restaurantList', (req, res) =>{
+            let jsonObj = req.body;
             console.log(jsonObj);
-        });
+        });*/
         router.get('/queued/restaurantList', function (req, res) {
             console.log('List of the restaurants');
             _this.RestaurantList.getAllItems(res);
         });
         //use router middleware
         this.app.use('/', router);
+        this.app.use('/', express.static(__dirname + '/dist'));
+        //this.app.use('/dist', express.static(path.join(__dirname, 'dist')));
     };
-    return Server;
+    return App;
 }());
-exports.Server = Server;
+exports.default = new App().app;

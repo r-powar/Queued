@@ -1,5 +1,6 @@
 "use strict";
-var AccessData_1 = require('../AccessData');
+Object.defineProperty(exports, "__esModule", { value: true });
+var AccessData_1 = require("../AccessData");
 var mongoose = AccessData_1.default.mongooseInstance;
 var mongooseConnection = AccessData_1.default.mongooseConnection;
 var RestaurantListModel = (function () {
@@ -26,5 +27,4 @@ var RestaurantListModel = (function () {
     };
     return RestaurantListModel;
 }());
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RestaurantListModel;
