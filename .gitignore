@@ -10,4 +10,4 @@ Thumbs.db
 
 # Dependency directories
 node_modules/
-.idea/
+/.idea
