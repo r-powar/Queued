@@ -57,20 +57,24 @@ function request(url, val){
 
 function viewRestaurantList(element, response){
     var elementList = document.getElementById(element);
-    var newElement = "<h3 class='panel-heading'>Restaurant List</h3>";
-
+    //var newElement = "<h3 class='panel-heading'>Search Results</h3>";
+    var newElement = "<div>";
     for(var i = 0; i < response.length; i++){
         newElement += "<div class='card card-inverse' style='background-color: #333; border-color: #333; margin-bottom: 10px;'>";
         newElement += "<div class='card-block'>";
-        newElement += "<h3 class='card-title'>" + response[i].name +"</h3>";
-        newElement += "<p class='card-text'>"+ "<span>Address: "+"</span>" + response[i].address+"</p>";
-        newElement += "<p class='card-text'>"+ "<span>Wait Time: "+"</span>" + response[i].waitTime + "<span>  mins"+"</span>" +"</p>";
+        newElement += "<h3 class='card-title'>" + response[i].name + "</h3>";
+        newElement += "<p class='card-text' style='margin-bottom: 0px;'>" + "<span>Address: " + "</span>" + response[i].address + ", " + response[i].city + ", " + response[i].state + "</p>";
+        newElement += "<p class='card-text' style='margin-bottom: 0px;'>" + "<span>Phone:   " + "</span>" + response[i].phone + "</p>";
+        newElement += "<p class='card-text' style='margin-bottom: 0px;'>" + "<span>Cuisine: " + "</span>" + response[i].cuisine + "</p>";
+        newElement += "<p class='card-text' style='margin-bottom: 0px;'>" + "<span>Budget:  " + "</span>" + response[i].budget + "</p>";
+        newElement += "<p class='card-text'>" + "<span>Wait Time: " + "</span>" + response[i].lowWait + "<span>-</span>" + response[i].highWait  + "<span>  mins</span>" + "</p>";
         newElement += "<form method='post'>";
         newElement += "<a href=\"javascript:makeRequest('reservationPage')\" class='btn btn-primary' role='button'>Queue Me</a>";
         newElement += "</form>";
         newElement += "</div>";
         newElement += "</div>";
     }
+    newElement += "</div>";
 
     elementList.innerHTML= newElement;
 }

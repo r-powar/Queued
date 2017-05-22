@@ -111,6 +111,7 @@ class App {
         router.get('/queued/restaurantList',(req, res) => {
             console.log('List of the restaurants');
             this.RestaurantList.getAllItems(res);
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         });
 
 

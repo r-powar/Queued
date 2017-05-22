@@ -4,10 +4,17 @@
 import Mongoose = require("mongoose");
 
 interface IRestaurantListModel extends Mongoose.Document{
-        name: string;
-        address: string;
-        waitTime: string;
-        id:number;
+        id: Number;
+        name: String;
+        address: String;
+        city: String;
+        state: String;
+        phone: String;
+        budget: String;
+        cuisine: String;
+        lowWait: Number;
+        highWait: Number;
+        imageURL: String;
 }
 
 export default IRestaurantListModel;

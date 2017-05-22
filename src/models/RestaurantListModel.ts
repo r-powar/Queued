@@ -19,10 +19,16 @@ export default class RestaurantListModel{
 
     public createSchema(): void{
         this.schema = mongoose.Schema({
+            id: Number,
             name: String,
             address: String,
-            waitTime: String,
-            id: Number
+            city: String,
+            state: String,
+            budget: String,
+            cuisine: String,
+            lowWait: Number,
+            highWait: Number,
+            imageURL: String
         },{collection: 'restaurantList'}
         );
     }
