@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queued Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <style>
+        #signUp{
+            margin-right: 30px;
+        }
+        #searchRestaurants{
+            padding-left: 250px;
+            padding-top: 50px;
+        }
+
+        #showRestaurantsList{
+            display: none;
+            margin-top: 20px;
+        }
+
+        #reservationPage{
+            display: none;
+            margin-top: 20px;
+        }
+
+        #navBar{
+            min-height: 65px;
+            background-color: #333;
+        }
+
+        body{
+            background-color: aliceblue;
+        }
+
+        #appName{
+            color: white;
+            font-size: 20px;
+            font-family: Helvetica;
+        }
+    </style>
+</head>
+<body>
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navBar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#" id="appName">Queued</a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">ABOUT<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FAQ</a>
+                    </li>
+                </ul>
+                    <button class="btn btn-primary" id="signUp" type="submit">Sign Up</button>
+                    <button class="btn btn-primary" type="submit">Log-In</button>
+            </div>
+        </nav>
+        <div id="searchRestaurants" class="starter-template">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        <h2>Search Restaurants</h2>
+                        <form id="search" action="" method='' onsubmit="">
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">Location</label>
+                                <div class="col-10" id="location">
+                                    <input class="form-control" type="text" placeholder="Enter Location" id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-time-input" class="col-2 col-form-label">Arrival Time</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="time" value="" id="example-time-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleSelect1" class="col-2 col-form-label">Budget Range</label>
+                                <div class="col-10">
+                                    <select class="form-control" id="exampleSelect1">
+                                        <option></option>
+                                        <option>$10-$30</option>
+                                        <option>$30-$60</option>
+                                        <option>$60-$100</option>
+                                        <option>$100+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleSelect2" class="col-2 col-form-label">Cuisine Option</label>
+                                <div class="col-10">
+                                    <select class="form-control" id="exampleSelect2">
+                                        <option></option>
+                                        <option>Italian</option>
+                                        <option>American</option>
+                                        <option>Mexican</option>
+                                        <option>Korean</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleSelect3" class="col-2 col-form-label">Guests</label>
+                                <div class="col-10">
+                                    <select class="form-control" id="exampleSelect3">
+                                        <option></option>
+                                        <option>+1</option>
+                                        <option>+2</option>
+                                        <option>+3</option>
+                                        <option>+4</option>
+                                        <option>More than 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleSelect4" class="col-2 col-form-label">Ratings</label>
+                                <div class="col-10">
+                                    <select class="form-control" id="exampleSelect4">
+                                        <option></option>
+                                        <option>1 Star</option>
+                                        <option>2 Star</option>
+                                        <option>3 Star</option>
+                                        <option>4 Star</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <a role="button" class="btn btn-primary" href="javascript:makeRequest('restaurantList')">Browse</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="showRestaurantsList" class="container"></div>
+        <div id="reservationPage" class="container">
+            <div class="jumbotron">
+                <h3 class="display-3">Reservation Made</h3>
+                <p class="lead">Your position in the wait list is {3}, we will also notify you when your table is ready</p>
+                <hr class="my-4">
+                <p>To get more info click the button below</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">More Info</a>
+                </p>
+            </div>
+        </div>
+        <script src="client.js"></script>
+        <script src="http://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>

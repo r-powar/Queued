@@ -23,8 +23,7 @@ module.exports = function(grunt) {
         ts: {
             app: {
                 files: [{
-                    src: ["src/\*\*/\*.ts", "!src/.baseDir.ts"],
-                    dest: "./dist"
+                    src: ["src/\*\*/\*.ts", "!src/.baseDir.ts", "app.ts", "server.ts"]
                 }],
                 options: {
                     module: "commonjs",

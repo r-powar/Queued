@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Created by rpowar on 4/30/17.
  */
@@ -17,9 +18,8 @@ var AccessData = (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
-    AccessData.DB_CONNECTION_STRING = 'mongodb://localhost:27017/queued';
     return AccessData;
 }());
+AccessData.DB_CONNECTION_STRING = 'mongodb://localhost:27017/queued';
 AccessData.connect();
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = AccessData;
