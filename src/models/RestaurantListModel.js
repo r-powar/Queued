@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const AccessData_1 = require("../AccessData");
+var AccessData_1 = require("../AccessData");
 var mongoose = AccessData_1.default.mongooseInstance;
 var mongooseConnection = AccessData_1.default.mongooseConnection;
-class RestaurantListModel {
-    constructor() {
+var RestaurantListModel = (function () {
+    function RestaurantListModel() {
         this.createSchema();
         this.createModel();
     }
-    createSchema() {
+    RestaurantListModel.prototype.createSchema = function () {
         this.schema = mongoose.Schema({
             id: Number,
             name: String,
@@ -21,16 +21,16 @@ class RestaurantListModel {
             highWait: Number,
             imageURL: String
         }, { collection: 'restaurantList' });
-    }
-    createModel() {
+    };
+    RestaurantListModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("RestaurantList", this.schema);
-    }
-    getAllItems(response) {
+    };
+    RestaurantListModel.prototype.getAllItems = function (response) {
         var query = this.model.find({});
-        query.exec((err, itemArray) => {
+        query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
-    }
-}
+    };
+    return RestaurantListModel;
+}());
 exports.default = RestaurantListModel;
-//# sourceMappingURL=RestaurantListModel.js.map

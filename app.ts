@@ -108,10 +108,16 @@ class App {
             console.log(jsonObj);
         });*/
 
+        router.use( (req, res, next) => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
+
         router.get('/queued/restaurantList',(req, res) => {
             console.log('List of the restaurants');
             this.RestaurantList.getAllItems(res);
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+            //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         });
 
 
