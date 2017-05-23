@@ -35,6 +35,12 @@ describe('Restaurant List Result', function () {
         expect(response).to.have.headers;
     });
 
+    it('The first entry in the array has known properties', function(){
+        expect(requestResult[0]).to.include.keys('name');
+        expect(requestResult[0]).to.have.property('id');
+        expect(response.body).to.not.be.a.string;
+    });
+
     it('The elements in the array have the expecte properties', function(){
         expect(response.body).to.satisfy(
             function (body) {
