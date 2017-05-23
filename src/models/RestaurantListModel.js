@@ -31,6 +31,15 @@ var RestaurantListModel = (function () {
             response.json(itemArray);
         });
     };
+    RestaurantListModel.prototype.setEstimateTimes = function (response, id, lowWait, highWait) {
+        var query = this.model.findOne({ id: id });
+        query.exec(function (err, data) {
+            data.lowWait = lowWait;
+            data.highWait = highWait;
+            data.save();
+            response.json(data);
+        });
+    };
     return RestaurantListModel;
 }());
 exports.default = RestaurantListModel;

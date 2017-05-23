@@ -22,10 +22,10 @@ var App = (function () {
     function App() {
         //create expressjs application
         this.app = express();
-        //add routes
-        this.routes();
         //configure application
         this.config();
+        //add routes
+        this.routes();
         this.RestaurantList = new RestaurantListModel_1.default();
         //add api
         this.api();
@@ -89,15 +89,19 @@ var App = (function () {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
+        router.post('/queued/restaurantList', function (req, res) {
+            console.log("test");
+            var id = req.body.id;
+            var lowWait = req.body.lowWait;
+            var highWait = req.body.highWait;
+            _this.RestaurantList.setEstimateTimes(res, id, lowWait, highWait);
+        });
         router.get('/queued/restaurantList', function (req, res) {
-            console.log('List of the restaurants');
             _this.RestaurantList.getAllItems(res);
-            //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         });
         //use router middleware
         this.app.use('/', router);
         this.app.use('/', express.static(__dirname + '/dist'));
-        //this.app.use('/dist', express.static(path.join(__dirname, 'dist')));
     };
     return App;
 }());

@@ -43,7 +43,16 @@ export default class RestaurantListModel{
             response.json(itemArray);
             }
         );
+    }
 
+    public setEstimateTimes(response: any, id: Number, lowWait: Number, highWait: Number): any{
+        var query = this.model.findOne({id: id});
+        query.exec((err, data) => {
+            data.lowWait = lowWait;
+            data.highWait = highWait;
+            data.save();
+            response.json(data);
+        });
     }
 
 }
