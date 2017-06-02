@@ -6,7 +6,7 @@ import Mongoose = require("mongoose");
 class AccessData {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = 'mongodb://localhost:27017/queued';
+    static DB_CONNECTION_STRING:string = 'mongodb://dbadmin:queued@ds064799.mlab.com:64799/queued';
 
     constructor () {
         AccessData.connect();

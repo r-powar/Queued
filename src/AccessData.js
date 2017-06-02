@@ -16,7 +16,7 @@ class AccessData {
         return this.mongooseInstance;
     }
 }
-AccessData.DB_CONNECTION_STRING = 'mongodb://localhost:27017/queued';
+AccessData.DB_CONNECTION_STRING = 'mongodb://dbadmin:queued@ds064799.mlab.com:64799/queued';
 AccessData.connect();
 exports.default = AccessData;
 //# sourceMappingURL=AccessData.js.map
