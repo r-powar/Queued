@@ -127,10 +127,13 @@ class App {
             this.RestaurantList.getAllItems(res);
         });
 
+        router.get('*', (req, res) =>{
+            res.sendFile(__dirname + '/dist/index.html');
+        });
 
         //use router middleware
-        this.app.use('/',router);
         this.app.use('/', express.static(__dirname + '/dist'));
+        this.app.use('/',router);
     }
 }
 
