@@ -10,8 +10,8 @@ const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
 class App {
     constructor() {
         this.app = express();
-        this.routes();
         this.config();
+        this.routes();
         this.RestaurantList = new RestaurantListModel_1.default();
         this.api();
     }
@@ -34,13 +34,26 @@ class App {
     routes() {
         let router;
         router = express.Router();
-        router.get('/queued/restaurantList', (req, res) => {
-            console.log('List of the restaurants');
-            this.RestaurantList.getAllItems(res);
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+        router.use((req, res, next) => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
         });
-        this.app.use('/', router);
+        router.post('/queued/restaurantList', (req, res) => {
+            console.log("test");
+            var id = req.body.id;
+            var lowWait = req.body.lowWait;
+            var highWait = req.body.highWait;
+            this.RestaurantList.setEstimateTimes(res, id, lowWait, highWait);
+        });
+        router.get('/queued/restaurantList', (req, res) => {
+            this.RestaurantList.getAllItems(res);
+        });
+        router.get('*', (req, res) => {
+            res.sendFile(__dirname + '/dist/index.html');
+        });
         this.app.use('/', express.static(__dirname + '/dist'));
+        this.app.use('/', router);
     }
 }
 exports.default = new App().app;
