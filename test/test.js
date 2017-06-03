@@ -62,3 +62,33 @@ describe('Restaurant List Result', function () {
 
 
 });
+
+describe('Restaurant List Post', function(){
+    var response;
+    var data = {
+        id: 1,
+        lowWait: 34,
+        highWait: 54
+    };
+
+    before(function (done) {
+        chai.request("http://localhost:8080")
+            .post("/queued/restaurantList")
+            .send(data)
+            .end(function (err, res) {
+                response = res;
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it('Should be able to post the data', function(){
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an.object;
+        expect(response.body).to.have.property('id');
+        expect(response.body).to.have.property('lowWait');
+        expect(response.body).to.have.property('highWait');
+
+    });
+});
