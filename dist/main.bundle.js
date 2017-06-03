@@ -426,7 +426,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var QueuedService = (function () {
     function QueuedService(http) {
         this.http = http;
-        this.host = 'http://localhost:8080';
+        this.host = '';
     }
     QueuedService.prototype.submitWaitTimes = function (body) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
@@ -619,7 +619,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SearchService = (function () {
     function SearchService(http) {
         this.http = http;
-        this.url = 'http://localhost:8080/queued/restaurantlist';
+        this.url = '/queued/restaurantlist';
     }
     SearchService.prototype.getResults = function () {
         return this.http.get(this.url).map(function (res) { return res.json(); });
