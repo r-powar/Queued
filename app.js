@@ -1,60 +1,111 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const express = require("express");
-const logger = require("morgan");
-const errorHandler = require("errorhandler");
-const methodOverride = require("method-override");
-const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
-class App {
-    constructor() {
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var express = require("express");
+var logger = require("morgan");
+var errorHandler = require("errorhandler");
+var methodOverride = require("method-override");
+var RestaurantListModel_1 = require("./src/models/RestaurantListModel");
+/**
+ * The server.
+ *
+ * @class Server
+ */
+var App = (function () {
+    /**
+     * Constructor.
+     *
+     * @class Server
+     * @constructor
+     */
+    function App() {
+        //create expressjs application
         this.app = express();
+        //configure application
         this.config();
+        //add routes
         this.routes();
         this.RestaurantList = new RestaurantListModel_1.default();
+        //add api
         this.api();
     }
-    api() {
-    }
-    config() {
+    /**
+     * Create REST API routes
+     *
+     * @class Server
+     * @method api
+     */
+    App.prototype.api = function () {
+        //empty for now
+    };
+    /**
+     * Configure application
+     *
+     * @class Server
+     * @method config
+     */
+    App.prototype.config = function () {
+        //add static paths
+        // this.app.use('/', express.static(__dirname+'/dist/public'));
+        //use logger middlware
         this.app.use(logger("dev"));
+        //use json form parser middlware
         this.app.use(bodyParser.json());
+        //use query string parser middlware
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
+        //use cookie parker middleware middlware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
+        //use override middlware
         this.app.use(methodOverride());
+        //catch 404 and forward to error handler
         this.app.use(function (err, req, res, next) {
             err.status = 404;
             next(err);
         });
+        //error handling
         this.app.use(errorHandler());
-    }
-    routes() {
-        let router;
+    };
+    /**
+     * Create router
+     *
+     * @class Server
+     * @method api
+     */
+    App.prototype.routes = function () {
+        var _this = this;
+        var router;
         router = express.Router();
-        router.use((req, res, next) => {
+        //IndexRoute
+        /*
+        router.post('/queued/restaurantList', (req, res) =>{
+            let jsonObj = req.body;
+            console.log(jsonObj);
+        });*/
+        router.use(function (req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
-        router.post('/queued/restaurantList', (req, res) => {
+        router.post('/queued/restaurantList', function (req, res) {
             console.log("test");
             var id = req.body.id;
             var lowWait = req.body.lowWait;
             var highWait = req.body.highWait;
-            this.RestaurantList.setEstimateTimes(res, id, lowWait, highWait);
+            _this.RestaurantList.setEstimateTimes(res, id, lowWait, highWait);
         });
-        router.get('/queued/restaurantList', (req, res) => {
-            this.RestaurantList.getAllItems(res);
+        router.get('/queued/restaurantList', function (req, res) {
+            _this.RestaurantList.getAllItems(res);
         });
-        router.get('*', (req, res) => {
+        router.get('*', function (req, res) {
             res.sendFile(__dirname + '/dist/index.html');
         });
+        //use router middleware
         this.app.use('/', express.static(__dirname + '/dist'));
         this.app.use('/', router);
-    }
-}
+    };
+    return App;
+}());
 exports.default = new App().app;
-//# sourceMappingURL=app.js.map
