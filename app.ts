@@ -8,6 +8,7 @@ import methodOverride = require("method-override");
 import mongoose = require("mongoose");
 import RestaurantListModel from './src/models/RestaurantListModel';
 
+let passport = require('passport');
 
 
 /**
@@ -102,12 +103,17 @@ class App {
         let router: express.Router;
         router = express.Router();
 
-        //IndexRoute
-        /*
-        router.post('/queued/restaurantList', (req, res) =>{
-            let jsonObj = req.body;
-            console.log(jsonObj);
-        });*/
+        router.get('/auth/facebook',
+            passport.authenticate('facebook',
+                {scope: ['public_profile', 'email'] }
+            )
+        );
+
+        router.get('/auth/facebook/callback',
+            passport.authenticate('facebook',
+                { failureRedirect: '/', successRedirect: '/search' }
+            )
+        );
 
         router.use( (req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
