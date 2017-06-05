@@ -20,10 +20,13 @@
     "debug": "^2.6.6",
     "errorhandler": "^1.5.0",
     "express": "^4.15.2",
+    "express-session": "^1.15.3",
     "method-override": "^2.3.8",
     "mocha": "^3.4.1",
     "mongoose": "^4.9.6",
     "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "pug": "^0.1.0"
   },
   "devDependencies": {

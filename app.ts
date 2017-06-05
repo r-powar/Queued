@@ -3,11 +3,14 @@ import * as cookieParser from "cookie-parser";
 import * as express from "express";
 import * as logger from "morgan";
 import * as path from "path";
+import * as session from 'express-session';
 import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
 import RestaurantListModel from './src/models/RestaurantListModel';
+import FacebookAuth from "./facebookAuth";
 
+let passport = require('passport');
 
 
 /**
@@ -19,6 +22,7 @@ class App {
 
     public app: express.Application;
     public RestaurantList: RestaurantListModel;
+    public facebookAuth: FacebookAuth;
 
     /**
      * Constructor.
@@ -27,6 +31,8 @@ class App {
      * @constructor
      */
     constructor() {
+        this.facebookAuth = new FacebookAuth();
+
         //create expressjs application
         this.app = express();
 
@@ -35,7 +41,6 @@ class App {
 
         //add routes
         this.routes();
-
 
         this.RestaurantList = new RestaurantListModel();
 
@@ -75,6 +80,10 @@ class App {
             extended: true
         }));
 
+        this.app.use(session({ secret: 'keyboard cat' }));
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
+
         //use cookie parker middleware middlware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
 
@@ -102,18 +111,23 @@ class App {
         let router: express.Router;
         router = express.Router();
 
-        //IndexRoute
-        /*
-        router.post('/queued/restaurantList', (req, res) =>{
-            let jsonObj = req.body;
-            console.log(jsonObj);
-        });*/
-
         router.use( (req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
+
+        router.get('/auth/facebook',
+            passport.authenticate('facebook',
+                {scope: ['public_profile', 'email'] }
+            )
+        );
+
+        router.get('/auth/facebook/callback',
+            passport.authenticate('facebook',
+                { failureRedirect: '/', successRedirect: '/search' }
+            )
+        );
 
         router.post('/queued/restaurantList', (req, res) => {
             console.log("test");
