@@ -8,6 +8,6 @@ var facebookOauth = (function () {
     }
     return facebookOauth;
 }());
-facebookOauth.id = '1688067244830106';
-facebookOauth.secret = '6e89bcbf68139d36f249af55b3b59eb3';
+facebookOauth.id = 'FB APP ID';
+facebookOauth.secret = 'FB APP SECRET';
 exports.default = facebookOauth;
