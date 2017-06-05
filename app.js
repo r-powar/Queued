@@ -7,6 +7,7 @@ var logger = require("morgan");
 var errorHandler = require("errorhandler");
 var methodOverride = require("method-override");
 var RestaurantListModel_1 = require("./src/models/RestaurantListModel");
+var passport = require('passport');
 /**
  * The server.
  *
@@ -78,12 +79,8 @@ var App = (function () {
         var _this = this;
         var router;
         router = express.Router();
-        //IndexRoute
-        /*
-        router.post('/queued/restaurantList', (req, res) =>{
-            let jsonObj = req.body;
-            console.log(jsonObj);
-        });*/
+        router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
+        router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
         router.use(function (req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

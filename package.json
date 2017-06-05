@@ -24,6 +24,8 @@
     "mocha": "^3.4.1",
     "mongoose": "^4.9.6",
     "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "pug": "^0.1.0"
   },
   "devDependencies": {
