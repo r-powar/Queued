@@ -8,9 +8,11 @@ const session = require("express-session");
 const errorHandler = require("errorhandler");
 const methodOverride = require("method-override");
 const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
+const facebookAuth_1 = require("./facebookAuth");
 let passport = require('passport');
 class App {
     constructor() {
+        this.facebookAuth = new facebookAuth_1.default();
         this.app = express();
         this.config();
         this.routes();

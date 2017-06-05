@@ -8,6 +8,8 @@ import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
 import RestaurantListModel from './src/models/RestaurantListModel';
+import facebooAuth, {default as facebookAuth} from './facebookAuth';
+import FacebookAuth from "./facebookAuth";
 
 let passport = require('passport');
 
@@ -21,6 +23,7 @@ class App {
 
     public app: express.Application;
     public RestaurantList: RestaurantListModel;
+    public facebookAuth: FacebookAuth;
 
     /**
      * Constructor.
@@ -29,6 +32,8 @@ class App {
      * @constructor
      */
     constructor() {
+        this.facebookAuth = new FacebookAuth();
+
         //create expressjs application
         this.app = express();
 
@@ -37,7 +42,6 @@ class App {
 
         //add routes
         this.routes();
-
 
         this.RestaurantList = new RestaurantListModel();
 
