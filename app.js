@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const logger = require("morgan");
+const session = require("express-session");
 const errorHandler = require("errorhandler");
 const methodOverride = require("method-override");
 const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
@@ -24,6 +25,7 @@ class App {
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
+        this.app.use(session({ secret: 'keyboard cat' }));
         this.app.use(cookieParser("SECRET_GOES_HERE"));
         this.app.use(methodOverride());
         this.app.use(function (err, req, res, next) {

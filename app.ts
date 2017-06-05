@@ -3,6 +3,7 @@ import * as cookieParser from "cookie-parser";
 import * as express from "express";
 import * as logger from "morgan";
 import * as path from "path";
+import * as session from 'express-session';
 import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
@@ -75,6 +76,8 @@ class App {
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
+
+        this.app.use(session({ secret: 'keyboard cat' }));
 
         //use cookie parker middleware middlware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
