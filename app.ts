@@ -8,7 +8,6 @@ import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
 import RestaurantListModel from './src/models/RestaurantListModel';
-import facebooAuth, {default as facebookAuth} from './facebookAuth';
 import FacebookAuth from "./facebookAuth";
 
 let passport = require('passport');
