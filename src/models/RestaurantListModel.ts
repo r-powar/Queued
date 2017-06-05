@@ -45,6 +45,34 @@ export default class RestaurantListModel{
         );
     }
 
+    public searchItems(response:any, searchCity: String, searchState: String, searchCuisine: String, searchBudget: String, searchWait: String): any{
+        var query = this.model.find({});
+        if (searchCity != "")
+        {
+            query.where('city', searchCity);
+        }
+        if (searchState != "")
+        {
+            query.where('state', searchState);
+        }
+        if (searchCuisine != "")
+        {
+            query.where('cuisine', searchCuisine);
+        }
+        if (searchBudget != "")
+        {
+            query.where('budget', searchBudget);
+        }
+        if (searchWait != '0')
+        {
+            query.where('highWait').lte(searchWait);
+        }
+        query.exec((err, itemArray) =>{
+            response.json(itemArray);
+            }
+        );
+    }
+
     public setEstimateTimes(response: any, id: Number, lowWait: Number, highWait: Number): any{
         var query = this.model.findOne({id: id});
         query.exec((err, data) => {
