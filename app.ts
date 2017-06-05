@@ -81,6 +81,8 @@ class App {
         }));
 
         this.app.use(session({ secret: 'keyboard cat' }));
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
 
         //use cookie parker middleware middlware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
