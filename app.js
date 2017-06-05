@@ -75,6 +75,14 @@ var App = (function () {
         //error handling
         this.app.use(errorHandler());
     };
+    App.prototype.validateUser = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        else {
+            res.redirect('/');
+        }
+    };
     /**
      * Create router
      *
@@ -92,6 +100,9 @@ var App = (function () {
         });
         router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
         router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
+        router.get('/auth/userInfo', this.validateUser, function (req, res) {
+            res.json(req.user);
+        });
         router.post('/queued/restaurantList', function (req, res) {
             console.log("test");
             var id = req.body.id;

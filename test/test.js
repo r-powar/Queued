@@ -17,7 +17,7 @@ describe('Restaurant List Result', function () {
     var response;
 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request("http://queuedapp.azurewebsites.net")
             .get("/queued/restaurantList")
             .end(function (err, res) {
                 requestResult = res.body;
@@ -70,9 +70,9 @@ describe('Restaurant List Post', function(){
         lowWait: 34,
         highWait: 54
     };
-
+    this.timeout(15000);
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request("http://queuedapp.azurewebsites.net")
             .post("/queued/restaurantList")
             .send(data)
             .end(function (err, res) {

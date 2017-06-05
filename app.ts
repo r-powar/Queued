@@ -101,6 +101,14 @@ class App {
         this.app.use(errorHandler());
     }
 
+    private validateUser(req, res, next):void{
+        if(req.isAuthenticated()){
+            return next();
+        }else{
+            res.redirect('/');
+        }
+    }
+
     /**
      * Create router
      *
@@ -128,6 +136,10 @@ class App {
                 { failureRedirect: '/', successRedirect: '/search' }
             )
         );
+
+        router.get('/auth/userInfo', this.validateUser,  (req, res)=> {
+            res.json(req.user);
+        });
 
         router.post('/queued/restaurantList', (req, res) => {
             console.log("test");
