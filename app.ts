@@ -71,7 +71,7 @@ class App {
 
         //use logger middlware
         this.app.use(logger("dev"));
-
+        this.app.use(cookieParser());
         //use json form parser middlware
         this.app.use(bodyParser.json());
 
@@ -80,15 +80,13 @@ class App {
             extended: true
         }));
 
+        //use override middlware
+        this.app.use(methodOverride());
+
+
         this.app.use(session({ secret: 'anything' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-
-        //use cookie parker middleware middlware
-        this.app.use(cookieParser("SECRET_GOES_HERE"));
-
-        //use override middlware
-        this.app.use(methodOverride());
 
 
         //catch 404 and forward to error handler
