@@ -55,6 +55,7 @@ class App {
         router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
         router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
         router.get('/auth/userInfo', this.validateUser, (req, res) => {
+            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
             res.json(req.user);
         });
         router.post('/queued/restaurantList', (req, res) => {

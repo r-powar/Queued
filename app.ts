@@ -135,6 +135,7 @@ class App {
         );
 
         router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
+            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
             res.json(req.user);
         });
 
