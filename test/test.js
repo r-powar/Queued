@@ -22,7 +22,11 @@ describe('Restaurant List Test', function () {
     var response;
 
     before(function (done) {
+<<<<<<< HEAD
         chai.request(host)
+=======
+        chai.request("http://queuedapp.azurewebsites.net")
+>>>>>>> refs/remotes/origin/master
             .get("/queued/restaurantList")
             .end(function (err, res) {
                 requestResult = res.body;
@@ -134,9 +138,13 @@ describe('Restaurant Post Test', function(){
         lowWait: 34,
         highWait: 54
     };
-
+    this.timeout(15000);
     before(function (done) {
+<<<<<<< HEAD
         chai.request(host)
+=======
+        chai.request("http://queuedapp.azurewebsites.net")
+>>>>>>> refs/remotes/origin/master
             .post("/queued/restaurantList")
             .send(data)
             .end(function (err, res) {

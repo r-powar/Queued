@@ -27,7 +27,7 @@ class App {
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
-        this.app.use(session({ secret: 'keyboard cat' }));
+        this.app.use(session({ secret: 'anything' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
         this.app.use(cookieParser("SECRET_GOES_HERE"));
@@ -37,6 +37,12 @@ class App {
             next(err);
         });
         this.app.use(errorHandler());
+    }
+    validateUser(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/');
     }
     routes() {
         let router;
@@ -48,6 +54,10 @@ class App {
         });
         router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
         router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
+        router.get('/auth/userInfo', this.validateUser, (req, res) => {
+            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
+            res.json(req.user);
+        });
         router.post('/queued/restaurantList', (req, res) => {
             console.log("test");
             var id = req.body.id;

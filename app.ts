@@ -80,7 +80,7 @@ class App {
             extended: true
         }));
 
-        this.app.use(session({ secret: 'keyboard cat' }));
+        this.app.use(session({ secret: 'anything' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
 
@@ -99,6 +99,11 @@ class App {
 
         //error handling
         this.app.use(errorHandler());
+    }
+
+    private validateUser(req, res, next):void{
+        if (req.isAuthenticated()) { return next(); }
+            res.redirect('/');
     }
 
     /**
@@ -128,6 +133,11 @@ class App {
                 { failureRedirect: '/', successRedirect: '/search' }
             )
         );
+
+        router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
+            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
+            res.json(req.user);
+        });
 
         router.post('/queued/restaurantList', (req, res) => {
             console.log("test");
