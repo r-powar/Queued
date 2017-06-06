@@ -484,7 +484,7 @@ var QueuedService = (function () {
     };
     QueuedService.prototype.getUserInfo = function () {
         return this.http.get(this.host + '/auth/userInfo')
-            .map(function (response) { return response.json; });
+            .map(function (response) { return response.json(); });
     };
     return QueuedService;
 }());
