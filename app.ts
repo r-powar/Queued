@@ -153,6 +153,15 @@ class App {
             this.RestaurantList.getAllItems(res);
         });
 
+        router.post('/queued/restaurantList/search',(req, res) => {
+            var city = req.body.searchCity;
+            var state = req.body.searchState;
+            var cuisine = req.body.searchCuisine;
+            var budget = req.body.searchBudget;
+            var wait = req.body.searchWait;
+            this.RestaurantList.searchItems(res, city, state, cuisine, budget, wait);
+        });
+
         router.get('*', (req, res) =>{
             res.sendFile(__dirname + '/dist/index.html');
         });

@@ -229,3 +229,59 @@ restaurantListCollection.insert({
     highWait: 45,
     imageURL: ""
 })
+
+restaurantListCollection.insert({
+    id: 17,
+    name:"Swiss Hibiscus",
+    address: "4950 NE 14th Ave",
+    city: "Portland",
+    state: "OR",
+    phone: "(503) 477-9224",
+    budget: "$10-30",
+    cuisine: "German",
+    lowWait: 10,
+    highWait: 15,
+    imageURL: ""
+})
+
+restaurantListCollection.insert({
+    id: 18,
+    name:"Willow",
+    address: "2005 SE 11th Ave",
+    city: "Portland",
+    state: "OR",
+    phone: "(814) 933-8872",
+    budget: "$30-60",
+    cuisine: "American",
+    lowWait: 14,
+    highWait: 18,
+    imageURL: ""
+})
+
+restaurantListCollection.insert({
+    id: 19,
+    name:"Little Bird Bistro",
+    address: "219 SW 6th Ave",
+    city: "Portland",
+    state: "OR",
+    phone: "(503) 688-5952",
+    budget: "$30-60",
+    cuisine: "French",
+    lowWait: 10,
+    highWait: 20,
+    imageURL: ""
+})
+
+restaurantListCollection.insert({
+    id: 20,
+    name:"Tadu Ethiopian Kitchen",
+    address: "484 Ellis St",
+    city: "San Francisco",
+    state: "CA",
+    phone: "(415) 409-6649",
+    budget: "$10-30",
+    cuisine: "Ethiopian",
+    lowWait: 15,
+    highWait: 20,
+    imageURL: ""
+})

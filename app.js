@@ -113,6 +113,14 @@ var App = (function () {
         router.get('/queued/restaurantList', function (req, res) {
             _this.RestaurantList.getAllItems(res);
         });
+        router.post('/queued/restaurantList/search', function (req, res) {
+            var city = req.body.searchCity;
+            var state = req.body.searchState;
+            var cuisine = req.body.searchCuisine;
+            var budget = req.body.searchBudget;
+            var wait = req.body.searchWait;
+            _this.RestaurantList.searchItems(res, city, state, cuisine, budget, wait);
+        });
         router.get('*', function (req, res) {
             res.sendFile(__dirname + '/dist/index.html');
         });

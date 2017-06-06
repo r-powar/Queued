@@ -31,6 +31,27 @@ var RestaurantListModel = (function () {
             response.json(itemArray);
         });
     };
+    RestaurantListModel.prototype.searchItems = function (response, searchCity, searchState, searchCuisine, searchBudget, searchWait) {
+        var query = this.model.find({});
+        if (searchCity != "") {
+            query.where('city', searchCity);
+        }
+        if (searchState != "") {
+            query.where('state', searchState);
+        }
+        if (searchCuisine != "") {
+            query.where('cuisine', searchCuisine);
+        }
+        if (searchBudget != "") {
+            query.where('budget', searchBudget);
+        }
+        if (searchWait != '0') {
+            query.where('highWait').lte(searchWait);
+        }
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     RestaurantListModel.prototype.setEstimateTimes = function (response, id, lowWait, highWait) {
         var query = this.model.findOne({ id: id });
         query.exec(function (err, data) {
