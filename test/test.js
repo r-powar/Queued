@@ -12,12 +12,15 @@ var should = chai.should();
 var http = require('http');
 chai.use(chaiHttp);
 
+//var host = "http://queuedapp.azurewebsites.net";
+var host = "http://localhost:8080";
+
 describe('Restaurant List Result', function () {
     var requestResult;
     var response;
 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(host)
             .get("/queued/restaurantList")
             .end(function (err, res) {
                 requestResult = res.body;
@@ -41,7 +44,7 @@ describe('Restaurant List Result', function () {
         expect(response.body).to.not.be.a.string;
     });
 
-    it('The elements in the array have the expecte properties', function(){
+    it('The elements in the array have the expected properties', function(){
         expect(response.body).to.satisfy(
             function (body) {
                 for (var i = 0; i < body.length; i++) {
@@ -72,7 +75,7 @@ describe('Restaurant List Post', function(){
     };
 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(host)
             .post("/queued/restaurantList")
             .send(data)
             .end(function (err, res) {

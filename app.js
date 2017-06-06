@@ -58,12 +58,12 @@ class App {
         router.get('/queued/restaurantList', (req, res) => {
             this.RestaurantList.getAllItems(res);
         });
-        router.post('/queued/restaurantList/search', (req, res) => {
-            var city = req.body.searchCity;
-            var state = req.body.searchState;
-            var cuisine = req.body.searchCuisine;
-            var budget = req.body.searchBudget;
-            var wait = req.body.searchWait;
+        router.get('/queued/restaurantList/search', (req, res) => {
+            var city = req.query.city;
+            var state = req.query.state;
+            var cuisine = req.query.cuisine;
+            var budget = req.query.budget;
+            var wait = req.query.wait;
             this.RestaurantList.searchItems(res, city, state, cuisine, budget, wait);
         });
         router.get('*', (req, res) => {

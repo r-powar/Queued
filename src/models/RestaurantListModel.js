@@ -33,19 +33,19 @@ class RestaurantListModel {
     }
     searchItems(response, searchCity, searchState, searchCuisine, searchBudget, searchWait) {
         var query = this.model.find({});
-        if (searchCity != "") {
+        if (searchCity != null) {
             query.where('city', searchCity);
         }
-        if (searchState != "") {
+        if (searchState != null) {
             query.where('state', searchState);
         }
-        if (searchCuisine != "") {
+        if (searchCuisine != null) {
             query.where('cuisine', searchCuisine);
         }
-        if (searchBudget != "") {
+        if (searchBudget != null) {
             query.where('budget', searchBudget);
         }
-        if (searchWait != '0') {
+        if (searchWait != null) {
             query.where('highWait').lte(searchWait);
         }
         query.exec((err, itemArray) => {
