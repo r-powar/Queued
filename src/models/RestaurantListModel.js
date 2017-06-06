@@ -19,7 +19,8 @@ class RestaurantListModel {
             cuisine: String,
             lowWait: Number,
             highWait: Number,
-            imageURL: String
+            imageURL: String,
+            owner: String
         }, { collection: 'restaurantList' });
     }
     createModel() {
@@ -52,8 +53,8 @@ class RestaurantListModel {
             response.json(itemArray);
         });
     }
-    setEstimateTimes(response, id, lowWait, highWait) {
-        var query = this.model.findOne({ id: id });
+    setEstimateTimes(response, user, lowWait, highWait) {
+        var query = this.model.findOne({ owner: user });
         query.exec((err, data) => {
             data.lowWait = lowWait;
             data.highWait = highWait;
