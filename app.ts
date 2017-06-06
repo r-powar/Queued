@@ -66,37 +66,12 @@ class App {
      * @method config
      */
     private config() : void {
-        //add static paths
-        // this.app.use('/', express.static(__dirname+'/dist/public'));
-
-        //use logger middlware
-        this.app.use(logger("dev"));
-        this.app.use(cookieParser());
-        //use json form parser middlware
+        this.app.use(logger('dev'));
         this.app.use(bodyParser.json());
-
-        //use query string parser middlware
-        this.app.use(bodyParser.urlencoded({
-            extended: true
-        }));
-
-        //use override middlware
-        this.app.use(methodOverride());
-
-
-        this.app.use(session({ secret: 'anything' }));
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(session({ secret: 'keyboard cat' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-
-
-        //catch 404 and forward to error handler
-        this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-            err.status = 404;
-            next(err);
-        });
-
-        //error handling
-        this.app.use(errorHandler());
     }
 
     private validateUser(req, res, next):void{

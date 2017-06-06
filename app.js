@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const express = require("express");
 const logger = require("morgan");
 const session = require("express-session");
-const errorHandler = require("errorhandler");
-const methodOverride = require("method-override");
 const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
 const facebookAuth_1 = require("./facebookAuth");
 let passport = require('passport');
@@ -22,21 +19,12 @@ class App {
     api() {
     }
     config() {
-        this.app.use(logger("dev"));
-        this.app.use(cookieParser());
+        this.app.use(logger('dev'));
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({
-            extended: true
-        }));
-        this.app.use(methodOverride());
-        this.app.use(session({ secret: 'anything' }));
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(session({ secret: 'keyboard cat' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-        this.app.use(function (err, req, res, next) {
-            err.status = 404;
-            next(err);
-        });
-        this.app.use(errorHandler());
     }
     validateUser(req, res, next) {
         if (req.isAuthenticated()) {
