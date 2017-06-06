@@ -419,7 +419,7 @@ module.exports = "<div class=\"container-fluid\">\n  <div class=\"row row-offcan
 /***/ 219:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"reservationPage\" class=\"container\">\n  <div class=\"jumbotron\">\n    <h3 class=\"display-3\">Reservation Made for {{username}}</h3>\n    <p class=\"lead\">Confirmation sent at {{useremail}}</p>\n    <p class=\"lead\">Your position in the wait list is 3, we will also notify you when your table is ready</p>\n    <hr class=\"my-4\">\n    <p>To get more info click the button below</p>\n    <p class=\"lead\">\n      <a class=\"btn btn-primary btn-lg\" routerLink=\"#\" role=\"button\">More Info</a>\n    </p>\n  </div>\n</div>\n"
+module.exports = "<div id=\"reservationPage\" class=\"container\">\n  <div class=\"jumbotron\">\n    <h3 class=\"display-3\">Reservation Made for {{username}}</h3>\n    <p class=\"lead\">Confirmation sent at {{email}}</p>\n    <p class=\"lead\">Your position in the wait list is 3, we will also notify you when your table is ready</p>\n    <hr class=\"my-4\">\n    <p>To get more info click the button below</p>\n    <p class=\"lead\">\n      <a class=\"btn btn-primary btn-lg\" routerLink=\"#\" role=\"button\">More Info</a>\n    </p>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -470,8 +470,10 @@ var QueuedService = (function () {
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error.json().error || 'Server error'); });
     };
     QueuedService.prototype.getUserInfo = function () {
-        return this.http.get(this.host + '/auth/userInfo')
+        var data = this.http.get(this.host + '/auth/userInfo')
             .map(function (response) { return response.json; });
+        console.log(data);
+        return data;
     };
     return QueuedService;
 }());
@@ -661,8 +663,9 @@ var ReservationComponent = (function () {
         this.queued$.getUserInfo()
             .subscribe(function (result) {
             _this.username = result.displayName;
-            _this.useremail = result.emails[0].value;
-        }, function () { return console.log('REST call' + _this.username); });
+            _this.email = result.emails[0].value;
+            console.log(result);
+        });
     }
     ReservationComponent.prototype.ngOnInit = function () {
     };
