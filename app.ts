@@ -102,7 +102,7 @@ class App {
     }
 
     private validateUser(req, res, next):void{
-        if (req.isAuthenticated()) { return next(); }
+        if (req.isAuthenticated()) { next(); }
             res.redirect('/');
     }
 
