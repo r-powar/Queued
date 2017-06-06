@@ -285,3 +285,28 @@ restaurantListCollection.insert({
     highWait: 20,
     imageURL: ""
 })
+
+db.createCollection('providerList')
+providerCollection = db.getCollection('providerList')
+providerCollection.remove({})
+providerCollection.insert({
+    id: 1,
+    guestName: "Dave",
+    waitList: "4",
+    groupSize: "3",
+    userId: "Raj Powar"
+})
+providerCollection.insert({
+    id: 1,
+    guestName: "John",
+    waitList: "9",
+    groupSize: "5",
+    userId: "Raj Powar"
+})
+providerCollection.insert({
+    id: 1,
+    guestName: "Joe",
+    waitList: "5",
+    groupSize: "2",
+    userId: "Raj Powar"
+})

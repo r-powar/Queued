@@ -8,6 +8,8 @@ import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 import mongoose = require("mongoose");
 import RestaurantListModel from './src/models/RestaurantListModel';
+import ProviderListModel from './src/models/ProviderModel';
+
 import FacebookAuth from "./facebookAuth";
 
 let passport = require('passport');
@@ -22,6 +24,7 @@ class App {
 
     public app: express.Application;
     public RestaurantList: RestaurantListModel;
+    public ProviderList: ProviderListModel;
     public facebookAuth: FacebookAuth;
 
     /**
@@ -43,6 +46,7 @@ class App {
         this.routes();
 
         this.RestaurantList = new RestaurantListModel();
+        this.ProviderList = new ProviderListModel();
 
         //add api
         this.api();
@@ -131,6 +135,11 @@ class App {
             var budget = req.query.budget;
             var wait = req.query.wait;
             this.RestaurantList.searchItems(res, city, state, cuisine, budget, wait);
+        });
+
+        router.get('/queued/providerList/:userId', (req, res) => {
+            var id = req.params.userId;
+            this.ProviderList.getList(res, {userId: id});
         });
 
         router.get('*', (req, res) =>{

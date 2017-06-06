@@ -5,6 +5,7 @@ const express = require("express");
 const logger = require("morgan");
 const session = require("express-session");
 const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
+const ProviderModel_1 = require("./src/models/ProviderModel");
 const facebookAuth_1 = require("./facebookAuth");
 let passport = require('passport');
 class App {
@@ -14,6 +15,7 @@ class App {
         this.config();
         this.routes();
         this.RestaurantList = new RestaurantListModel_1.default();
+        this.ProviderList = new ProviderModel_1.default();
         this.api();
     }
     api() {
@@ -58,6 +60,10 @@ class App {
             var budget = req.query.budget;
             var wait = req.query.wait;
             this.RestaurantList.searchItems(res, city, state, cuisine, budget, wait);
+        });
+        router.get('/queued/providerList/:userId', (req, res) => {
+            var id = req.params.userId;
+            this.ProviderList.getList(res, { userId: id });
         });
         router.get('*', (req, res) => {
             res.sendFile(__dirname + '/dist/index.html');
