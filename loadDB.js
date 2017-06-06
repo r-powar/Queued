@@ -17,7 +17,8 @@ restaurantListCollection.insert({
     cuisine: "Mediterranean",
     lowWait: 15,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: "Guy Personman"
 })
 
 restaurantListCollection.insert({
@@ -31,7 +32,8 @@ restaurantListCollection.insert({
     cuisine: "Cuban",
     lowWait: 6,
     highWait: 10,
-    imageURL: ""
+    imageURL: "",
+    owner: "Raj Powar"
 })
 
 restaurantListCollection.insert({
@@ -45,7 +47,8 @@ restaurantListCollection.insert({
     cuisine: "American",
     lowWait: 10,
     highWait: 15,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -59,7 +62,8 @@ restaurantListCollection.insert({
     cuisine: "Korean",
     lowWait: 5,
     highWait: 7,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -73,7 +77,8 @@ restaurantListCollection.insert({
     cuisine: "Korean",
     lowWait: 13,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -87,7 +92,8 @@ restaurantListCollection.insert({
     cuisine: "Argentine",
     lowWait: 15,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -101,7 +107,8 @@ restaurantListCollection.insert({
     cuisine: "Chinese",
     lowWait: 5,
     highWait: 7,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -115,7 +122,8 @@ restaurantListCollection.insert({
     cuisine: "Chinese",
     lowWait: 10,
     highWait: 15,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -129,7 +137,8 @@ restaurantListCollection.insert({
     cuisine: "Indian",
     lowWait: 15,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -143,7 +152,8 @@ restaurantListCollection.insert({
     cuisine: "Thai",
     lowWait: 10,
     highWait: 15,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -157,7 +167,8 @@ restaurantListCollection.insert({
     cuisine: "German",
     lowWait: 5,
     highWait: 10,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -171,7 +182,8 @@ restaurantListCollection.insert({
     cuisine: "Italian",
     lowWait: 20,
     highWait: 25,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -185,7 +197,8 @@ restaurantListCollection.insert({
     cuisine: "Italian",
     lowWait: 20,
     highWait: 30,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -199,7 +212,8 @@ restaurantListCollection.insert({
     cuisine: "French",
     lowWait: 20,
     highWait: 30,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -213,7 +227,8 @@ restaurantListCollection.insert({
     cuisine: "Ethiopian",
     lowWait: 10,
     highWait: 15,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -227,7 +242,8 @@ restaurantListCollection.insert({
     cuisine: "American",
     lowWait: 30,
     highWait: 45,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -241,7 +257,8 @@ restaurantListCollection.insert({
     cuisine: "German",
     lowWait: 10,
     highWait: 15,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -255,7 +272,8 @@ restaurantListCollection.insert({
     cuisine: "American",
     lowWait: 14,
     highWait: 18,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -269,7 +287,8 @@ restaurantListCollection.insert({
     cuisine: "French",
     lowWait: 10,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })
 
 restaurantListCollection.insert({
@@ -283,5 +302,6 @@ restaurantListCollection.insert({
     cuisine: "Ethiopian",
     lowWait: 15,
     highWait: 20,
-    imageURL: ""
+    imageURL: "",
+    owner: ""
 })

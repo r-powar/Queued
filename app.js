@@ -35,6 +35,11 @@ class App {
     routes() {
         let router;
         router = express.Router();
+        router.use((req, res, next) => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
         router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
         router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
         router.get('/auth/userInfo', this.validateUser, (req, res) => {
@@ -43,10 +48,10 @@ class App {
         });
         router.post('/queued/restaurantList', (req, res) => {
             console.log("test");
-            var id = req.body.id;
+            var user = req.body.user;
             var lowWait = req.body.lowWait;
             var highWait = req.body.highWait;
-            this.RestaurantList.setEstimateTimes(res, id, lowWait, highWait);
+            this.RestaurantList.setEstimateTimes(res, user, lowWait, highWait);
         });
         router.get('/queued/restaurantList', (req, res) => {
             this.RestaurantList.getAllItems(res);
