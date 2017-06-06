@@ -9,7 +9,7 @@ webpackJsonp([2,4],{
 var content = __webpack_require__(208);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(486)(content, {});
+var update = __webpack_require__(485)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -125,7 +125,7 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 486:
+/***/ 485:
 /***/ (function(module, exports) {
 
 /*
@@ -378,7 +378,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 490:
+/***/ 489:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(145);
@@ -386,5 +386,5 @@ module.exports = __webpack_require__(145);
 
 /***/ })
 
-},[490]);
+},[489]);
 //# sourceMappingURL=styles.bundle.js.map
