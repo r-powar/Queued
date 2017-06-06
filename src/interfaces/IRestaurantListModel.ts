@@ -15,6 +15,7 @@ interface IRestaurantListModel extends Mongoose.Document{
         lowWait: Number;
         highWait: Number;
         imageURL: String;
+        owner: String;
 }
 
 export default IRestaurantListModel;

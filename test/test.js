@@ -130,7 +130,7 @@ describe('Restaurant Post Test', function(){
     this.timeout(15000);
     var response;
     var data = {
-        id: 1,
+        user: "Guy Personman",
         lowWait: 34,
         highWait: 54
     };
@@ -152,13 +152,13 @@ describe('Restaurant Post Test', function(){
     });
 
     it('Response contains expected properties', function(){
-        expect(response.body).to.have.property('id').that.is.a('number');
+        expect(response.body).to.have.property('owner').that.is.a('string');
         expect(response.body).to.have.property('lowWait').that.is.a('number');
         expect(response.body).to.have.property('highWait').that.is.a('number');
     });
 
     it('Response properties match submitted values', function(){
-        expect(response.body).to.have.property('id').eql(data.id);
+        expect(response.body).to.have.property('owner').eql(data.user);
         expect(response.body).to.have.property('lowWait').eql(data.lowWait);
         expect(response.body).to.have.property('highWait').eql(data.highWait);
     });
