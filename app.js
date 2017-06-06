@@ -40,7 +40,7 @@ class App {
     }
     validateUser(req, res, next) {
         if (req.isAuthenticated()) {
-            return next();
+            next();
         }
         res.redirect('/');
     }
