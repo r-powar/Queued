@@ -203,7 +203,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SearchService = (function () {
     function SearchService(http) {
         this.http = http;
-        this.host = 'http://localhost:8080';
+        this.host = '';
     }
     SearchService.prototype.getResults = function () {
         return this.http.get(this.host + '/queued/restaurantlist').map(function (res) { return res.json(); });
