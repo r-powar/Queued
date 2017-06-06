@@ -108,6 +108,7 @@ class App {
         );
 
         router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
+            console.log('user object:' + JSON.stringify(req.user));
             res.json(req.user);
         });
 
