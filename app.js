@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const express = require("express");
 const logger = require("morgan");
 const session = require("express-session");
-const errorHandler = require("errorhandler");
-const methodOverride = require("method-override");
 const RestaurantListModel_1 = require("./src/models/RestaurantListModel");
 const facebookAuth_1 = require("./facebookAuth");
 let passport = require('passport');
@@ -22,40 +19,26 @@ class App {
     api() {
     }
     config() {
-        this.app.use(logger("dev"));
+        this.app.use(logger('dev'));
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({
-            extended: true
-        }));
-        this.app.use(session({ secret: 'anything' }));
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(session({ secret: 'keyboard cat' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-        this.app.use(cookieParser("SECRET_GOES_HERE"));
-        this.app.use(methodOverride());
-        this.app.use(function (err, req, res, next) {
-            err.status = 404;
-            next(err);
-        });
-        this.app.use(errorHandler());
     }
     validateUser(req, res, next) {
         if (req.isAuthenticated()) {
-            next();
+            return next();
         }
         res.redirect('/');
     }
     routes() {
         let router;
         router = express.Router();
-        router.use((req, res, next) => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
         router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
         router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/search' }));
         router.get('/auth/userInfo', this.validateUser, (req, res) => {
-            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
+            console.log('user object:' + JSON.stringify(req.user));
             res.json(req.user);
         });
         router.post('/queued/restaurantList', (req, res) => {

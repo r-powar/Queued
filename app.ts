@@ -66,43 +66,16 @@ class App {
      * @method config
      */
     private config() : void {
-        //add static paths
-        // this.app.use('/', express.static(__dirname+'/dist/public'));
-
-        //use logger middlware
-        this.app.use(logger("dev"));
-
-        //use json form parser middlware
+        this.app.use(logger('dev'));
         this.app.use(bodyParser.json());
-
-        //use query string parser middlware
-        this.app.use(bodyParser.urlencoded({
-            extended: true
-        }));
-
-        this.app.use(session({ secret: 'anything' }));
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(session({ secret: 'keyboard cat' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-
-        //use cookie parker middleware middlware
-        this.app.use(cookieParser("SECRET_GOES_HERE"));
-
-        //use override middlware
-        this.app.use(methodOverride());
-
-
-        //catch 404 and forward to error handler
-        this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-            err.status = 404;
-            next(err);
-        });
-
-        //error handling
-        this.app.use(errorHandler());
     }
 
     private validateUser(req, res, next):void{
-        if (req.isAuthenticated()) { next(); }
+        if (req.isAuthenticated()) { return next(); }
             res.redirect('/');
     }
 
@@ -116,11 +89,11 @@ class App {
         let router: express.Router;
         router = express.Router();
 
-        router.use( (req, res, next) => {
+/*        router.use( (req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
-        });
+        });*/
 
         router.get('/auth/facebook',
             passport.authenticate('facebook',
@@ -135,7 +108,7 @@ class App {
         );
 
         router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
-            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
+            console.log('user object:' + JSON.stringify(req.user));
             res.json(req.user);
         });
 
