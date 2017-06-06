@@ -102,7 +102,7 @@ class App {
     }
 
     private validateUser(req, res, next):void{
-        if (req.isAuthenticated()) { next(); }
+        if (req.isAuthenticated()) { return next(); }
             res.redirect('/');
     }
 
@@ -135,7 +135,6 @@ class App {
         );
 
         router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
-            req.user.displayName = 'fjwehlwehtwlkehgsdgs';
             res.json(req.user);
         });
 

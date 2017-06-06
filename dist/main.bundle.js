@@ -460,7 +460,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var QueuedService = (function () {
     function QueuedService(http) {
         this.http = http;
-        this.host = '';
+        this.host = 'http://localhost:8080';
     }
     QueuedService.prototype.submitWaitTimes = function (body) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
