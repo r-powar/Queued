@@ -624,7 +624,7 @@ var ProviderComponent = (function () {
         this.queued$.getUserInfo()
             .subscribe(function (result) {
             _this.model.id = result.displayName;
-        });
+        }, function () { return console.log('name: ' + _this.model.id); });
     }
     ProviderComponent.prototype.showTimeForm = function () {
         this.showTime = true;
@@ -679,7 +679,7 @@ var ReservationComponent = (function () {
         this.queued$.getUserInfo()
             .subscribe(function (result) {
             _this.username = result.displayName;
-        });
+        }, function () { return console.log('name: ' + _this.username); });
     }
     ReservationComponent.prototype.ngOnInit = function () {
     };
