@@ -12,8 +12,8 @@ var should = chai.should();
 var http = require('http');
 chai.use(chaiHttp);
 
-//var host = "http://queuedapp.azurewebsites.net";
-var host = "http://localhost:8080";
+var host = "http://queuedapp.azurewebsites.net";
+//var host = "http://localhost:8080";
 
 // List Test
 describe('Restaurant List Test', function () {
