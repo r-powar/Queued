@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const AccessData_1 = require("../AccessData");
+var AccessData_1 = require("../AccessData");
 var mongoose = AccessData_1.default.mongooseInstance;
 var mongooseConnection = AccessData_1.default.mongooseConnection;
-class RestaurantListModel {
-    constructor() {
+var RestaurantListModel = (function () {
+    function RestaurantListModel() {
         this.createSchema();
         this.createModel();
     }
-    createSchema() {
+    RestaurantListModel.prototype.createSchema = function () {
         this.schema = mongoose.Schema({
             id: Number,
             name: String,
@@ -21,17 +21,17 @@ class RestaurantListModel {
             highWait: Number,
             imageURL: String
         }, { collection: 'restaurantList' });
-    }
-    createModel() {
+    };
+    RestaurantListModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("RestaurantList", this.schema);
-    }
-    getAllItems(response) {
+    };
+    RestaurantListModel.prototype.getAllItems = function (response) {
         var query = this.model.find({});
-        query.exec((err, itemArray) => {
+        query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
-    }
-    searchItems(response, searchCity, searchState, searchCuisine, searchBudget, searchWait) {
+    };
+    RestaurantListModel.prototype.searchItems = function (response, searchCity, searchState, searchCuisine, searchBudget, searchWait) {
         var query = this.model.find({});
         if (searchCity != null) {
             query.where('city', searchCity);
@@ -48,19 +48,19 @@ class RestaurantListModel {
         if (searchWait != null) {
             query.where('highWait').lte(searchWait);
         }
-        query.exec((err, itemArray) => {
+        query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
-    }
-    setEstimateTimes(response, id, lowWait, highWait) {
+    };
+    RestaurantListModel.prototype.setEstimateTimes = function (response, id, lowWait, highWait) {
         var query = this.model.findOne({ id: id });
-        query.exec((err, data) => {
+        query.exec(function (err, data) {
             data.lowWait = lowWait;
             data.highWait = highWait;
             data.save();
             response.json(data);
         });
-    }
-}
+    };
+    return RestaurantListModel;
+}());
 exports.default = RestaurantListModel;
-//# sourceMappingURL=RestaurantListModel.js.map
