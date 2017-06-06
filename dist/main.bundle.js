@@ -662,7 +662,7 @@ var ReservationComponent = (function () {
             .subscribe(function (result) {
             _this.username = result.displayName;
             _this.useremail = result.emails[0].value;
-        });
+        }, function () { return console.log('REST call' + _this.username); });
     }
     ReservationComponent.prototype.ngOnInit = function () {
     };
