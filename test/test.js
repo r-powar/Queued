@@ -17,16 +17,12 @@ var host = "http://queuedapp.azurewebsites.net";
 
 // List Test
 describe('Restaurant List Test', function () {
-    this.timeout(10000);
+    this.timeout(15000);
     var requestResult;
     var response;
 
     before(function (done) {
-<<<<<<< HEAD
         chai.request(host)
-=======
-        chai.request("http://queuedapp.azurewebsites.net")
->>>>>>> refs/remotes/origin/master
             .get("/queued/restaurantList")
             .end(function (err, res) {
                 requestResult = res.body;
@@ -74,7 +70,7 @@ describe('Restaurant List Test', function () {
 
 // Search Test
 describe('Restaurant Search Test', function () {
-    this.timeout(10000);
+    this.timeout(15000);
     var requestResult;
     var response;
     var searchTerms = '?city=Seattle&state=WA&cuisine=Chinese&budget=$10-30&wait=100';
@@ -131,20 +127,15 @@ describe('Restaurant Search Test', function () {
 
 // Post Test
 describe('Restaurant Post Test', function(){
-    this.timeout(10000);
+    this.timeout(15000);
     var response;
     var data = {
         id: 1,
         lowWait: 34,
         highWait: 54
     };
-    this.timeout(15000);
     before(function (done) {
-<<<<<<< HEAD
         chai.request(host)
-=======
-        chai.request("http://queuedapp.azurewebsites.net")
->>>>>>> refs/remotes/origin/master
             .post("/queued/restaurantList")
             .send(data)
             .end(function (err, res) {
