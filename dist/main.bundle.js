@@ -470,10 +470,8 @@ var QueuedService = (function () {
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error.json().error || 'Server error'); });
     };
     QueuedService.prototype.getUserInfo = function () {
-        var data = this.http.get(this.host + '/auth/userInfo')
+        return this.http.get(this.host + '/auth/userInfo')
             .map(function (response) { return response.json; });
-        console.log(data);
-        return data;
     };
     return QueuedService;
 }());
@@ -664,7 +662,6 @@ var ReservationComponent = (function () {
             .subscribe(function (result) {
             _this.username = result.displayName;
             _this.email = result.emails[0].value;
-            console.log(result);
         });
     }
     ReservationComponent.prototype.ngOnInit = function () {

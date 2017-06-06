@@ -80,7 +80,7 @@ class App {
             extended: true
         }));
 
-        this.app.use(session({ secret: 'keyboard cat' }));
+        this.app.use(session({ secret: 'anything' }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
 
@@ -102,11 +102,8 @@ class App {
     }
 
     private validateUser(req, res, next):void{
-        if(req.isAuthenticated()){
-            return next();
-        }else{
+        if (req.isAuthenticated()) { return next(); }
             res.redirect('/');
-        }
     }
 
     /**
@@ -137,7 +134,7 @@ class App {
             )
         );
 
-        router.get('/auth/userInfo', this.validateUser,  (req, res)=> {
+        router.get('/auth/userInfo', this.validateUser,  (req: any, res: any) => {
             res.json(req.user);
         });
 
