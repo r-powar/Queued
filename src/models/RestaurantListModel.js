@@ -33,7 +33,7 @@ class RestaurantListModel {
         });
     }
     searchItems(response, searchCity, searchState, searchCuisine, searchBudget, searchWait) {
-        var query = this.model.find({});
+        var query = this.model.find({}).sort({ "id": 1 });
         if (searchCity != null) {
             query.where('city', searchCity);
         }

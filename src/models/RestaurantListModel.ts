@@ -47,7 +47,7 @@ export default class RestaurantListModel{
     }
 
     public searchItems(response:any, searchCity: String, searchState: String, searchCuisine: String, searchBudget: String, searchWait: String): any{
-        var query = this.model.find({});
+        var query = this.model.find({}).sort({"id": 1});
         if (searchCity != null)
         {
             query.where('city', searchCity);
