@@ -163,3 +163,45 @@ describe('Restaurant Post Test', function(){
         expect(response.body).to.have.property('highWait').eql(data.highWait);
     });
 });
+
+describe('Provider Guest List', function(){
+    this.timeout(15000);
+    var requestResult;
+    var response;
+    var search = 'Raj Powar';
+
+    before(function (done) {
+        chai.request(host)
+            .get("/queued/restaurantList/" + search)
+            .end(function (err, res) {
+                requestResult = res.body;
+                response = res;
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it('Get is successful', function (){
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an.object;
+        expect(response).to.have.headers;
+    });
+
+    it('The elements in the array have the expected properties', function(){
+        expect(response.body).to.satisfy(
+            function (body) {
+                for (var i = 0; i < body.length; i++) {
+                    expect(body[i]).to.have.property('guestName').that.is.a('string');
+                    expect(body[i]).to.have.property('waitList').that.is.a('string');
+                    expect(body[i]).to.have.property('groupSize').that.is.a('string');
+                    expect(body[i]).to.have.property('userId').that.is.a('string');
+
+                }
+                return true;
+            });
+    });
+
+
+
+});

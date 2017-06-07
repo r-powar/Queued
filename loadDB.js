@@ -310,23 +310,44 @@ db.createCollection('providerList')
 providerCollection = db.getCollection('providerList')
 providerCollection.remove({})
 providerCollection.insert({
-    id: 1,
+    id: 12,
     guestName: "Dave",
     waitList: "4",
     groupSize: "3",
     userId: "Raj Powar"
 })
 providerCollection.insert({
-    id: 1,
+    id: 14,
     guestName: "John",
     waitList: "9",
     groupSize: "5",
     userId: "Raj Powar"
 })
 providerCollection.insert({
-    id: 1,
+    id: 15,
     guestName: "Joe",
     waitList: "5",
     groupSize: "2",
     userId: "Raj Powar"
+})
+providerCollection.insert({
+    id: 4,
+    guestName: "Jane",
+    waitList: "19",
+    groupSize: "6",
+    userId: "Guy Personman"
+})
+providerCollection.insert({
+    id: 4,
+    guestName: "Roger",
+    waitList: "17",
+    groupSize: "9",
+    userId: "Guy Personman"
+})
+providerCollection.insert({
+    id: 4,
+    guestName: "Roger",
+    waitList: "10",
+    groupSize: "4",
+    userId: "Guy Personman"
 })

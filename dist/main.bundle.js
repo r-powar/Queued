@@ -433,7 +433,7 @@ module.exports = "<div class=\"container-fluid\">\n  <div class=\"row row-offcan
 /***/ 218:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"reservationPage\" class=\"container\">\n  <div class=\"jumbotron\">\n    <h3 class=\"display-3\">Reservation Made for {{username}}</h3>\n    <p class=\"lead\">Confirmation sent at {{email}}</p>\n    <p class=\"lead\">Your position in the wait list is 3, we will also notify you when your table is ready</p>\n    <hr class=\"my-4\">\n    <p>To get more info click the button below</p>\n    <p class=\"lead\">\n      <a class=\"btn btn-primary btn-lg\" routerLink=\"#\" role=\"button\">More Info</a>\n    </p>\n  </div>\n</div>\n"
+module.exports = "<div id=\"reservationPage\" class=\"container\">\n  <div class=\"jumbotron\">\n    <h3 class=\"display-3\">Reservation Made</h3>\n    <p class=\"lead\">Confirmation sent</p>\n    <p class=\"lead\">Your position in the wait list is 3, we will also notify you when your table is ready</p>\n    <hr class=\"my-4\">\n    <p>To get more info click the button below</p>\n    <p class=\"lead\">\n      <a class=\"btn btn-primary btn-lg\" routerLink=\"#\" role=\"button\">More Info</a>\n    </p>\n  </div>\n</div>\n"
 
 /***/ }),
 
