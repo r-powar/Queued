@@ -39,7 +39,7 @@ export default class RestaurantListModel{
     }
 
     public getAllItems(response:any): any{
-        var query = this.model.find({});
+        var query = this.model.find({}).sort({"id": 1});
         query.exec((err, itemArray) =>{
             response.json(itemArray);
             }

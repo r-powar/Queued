@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var AccessData_1 = require("../AccessData");
+const AccessData_1 = require("../AccessData");
 var mongoose = AccessData_1.default.mongooseInstance;
 var mongooseConnection = AccessData_1.default.mongooseConnection;
-var ProviderListModel = (function () {
-    function ProviderListModel() {
+class ProviderListModel {
+    constructor() {
         this.createSchema();
         this.createModel();
     }
-    ProviderListModel.prototype.createSchema = function () {
+    createSchema() {
         this.schema = mongoose.Schema({
             id: Number,
             guestName: String,
@@ -16,16 +16,16 @@ var ProviderListModel = (function () {
             groupSize: String,
             userId: String
         }, { collection: 'providerList' });
-    };
-    ProviderListModel.prototype.createModel = function () {
+    }
+    createModel() {
         this.model = mongooseConnection.model("ProviderList", this.schema);
-    };
-    ProviderListModel.prototype.getList = function (response, filter) {
+    }
+    getList(response, filter) {
         var query = this.model.find(filter);
-        query.exec(function (err, list) {
+        query.exec((err, list) => {
             response.json(list);
         });
-    };
-    return ProviderListModel;
-}());
+    }
+}
 exports.default = ProviderListModel;
+//# sourceMappingURL=ProviderModel.js.map
